@@ -47,7 +47,7 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ylj-oJ-fqD">
-                                <rect key="frame" x="0.0" y="96" width="414" height="717"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </containerView>
                             <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0vw-jR-X6Q" userLabel="Suggestion Tray">
@@ -277,7 +277,7 @@
                             <constraint firstItem="kFG-OX-YkL" firstAttribute="bottom" secondItem="nQT-PV-ULm" secondAttribute="bottom" id="LiF-mb-9zs"/>
                             <constraint firstItem="0vw-jR-X6Q" firstAttribute="top" secondItem="lJT-0B-l2J" secondAttribute="bottom" id="LwM-TL-gho"/>
                             <constraint firstItem="0vw-jR-X6Q" firstAttribute="trailing" secondItem="Vxt-xD-aBt" secondAttribute="trailing" id="MeV-nA-tfJ"/>
-                            <constraint firstItem="Krm-hA-s9u" firstAttribute="top" secondItem="Ylj-oJ-fqD" secondAttribute="bottom" id="N6y-rD-Nne"/>
+                            <constraint firstAttribute="bottom" secondItem="Ylj-oJ-fqD" secondAttribute="bottom" id="N6y-rD-Nne"/>
                             <constraint firstItem="lJT-0B-l2J" firstAttribute="width" secondItem="Vxt-xD-aBt" secondAttribute="width" id="NuH-hE-pWg"/>
                             <constraint firstItem="lJT-0B-l2J" firstAttribute="top" secondItem="nQT-PV-ULm" secondAttribute="bottom" id="P7O-RF-g4h"/>
                             <constraint firstItem="Ylj-oJ-fqD" firstAttribute="leading" secondItem="Vxt-xD-aBt" secondAttribute="leading" id="Piz-bL-YZd"/>
@@ -288,7 +288,7 @@
                             <constraint firstItem="lJT-0B-l2J" firstAttribute="centerX" secondItem="uBn-Md-Q2c" secondAttribute="centerX" id="d7x-EX-84Q"/>
                             <constraint firstItem="EJw-WC-cX3" firstAttribute="centerY" secondItem="Vxt-xD-aBt" secondAttribute="centerY" id="eOr-re-Jxe"/>
                             <constraint firstItem="EJw-WC-cX3" firstAttribute="width" secondItem="Vxt-xD-aBt" secondAttribute="width" id="gmj-jq-FHp"/>
-                            <constraint firstItem="Ylj-oJ-fqD" firstAttribute="top" secondItem="lJT-0B-l2J" secondAttribute="bottom" id="h5k-Sy-jb2"/>
+                            <constraint firstItem="Ylj-oJ-fqD" firstAttribute="top" secondItem="Vxt-xD-aBt" secondAttribute="top" id="h5k-Sy-jb2"/>
                             <constraint firstItem="Krm-hA-s9u" firstAttribute="width" secondItem="Vxt-xD-aBt" secondAttribute="width" id="m5V-dn-y07"/>
                             <constraint firstItem="nQT-PV-ULm" firstAttribute="centerX" secondItem="Vxt-xD-aBt" secondAttribute="centerX" id="mvu-GD-IuW"/>
                             <constraint firstItem="yPc-P1-sCk" firstAttribute="centerX" secondItem="uBn-Md-Q2c" secondAttribute="centerX" id="pBv-7C-JRr"/>
