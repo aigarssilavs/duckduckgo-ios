@@ -82,7 +82,8 @@ class MainViewController: UIViewController {
     var homeController: HomeViewController?
     var tabsBarController: TabsBarViewController?
     var suggestionTrayController: SuggestionTrayViewController?
-
+    var mainContainerViewController: MainContainerViewController?
+    
     private lazy var appUrls: AppUrls = AppUrls()
 
     var tabManager: TabManager!
@@ -289,6 +290,11 @@ class MainViewController: UIViewController {
             controller.autocompleteDelegate = self
             controller.favoritesOverlayDelegate = self
             suggestionTrayController = controller
+            return
+        }
+        
+        if let controller = segue.destination as? MainContainerViewController {
+            mainContainerViewController = controller
             return
         }
         
@@ -557,11 +563,14 @@ class MainViewController: UIViewController {
     }
 
     private func addToView(controller: UIViewController) {
-        addChild(controller)
-        containerView.addSubview(controller.view)
-        controller.view.frame = containerView.bounds
-        controller.didMove(toParent: self)
-
+        guard let mainContainerViewController = self.mainContainerViewController else {
+            fatalError("Failed to retrieve MainContainerViewController")
+        }
+        
+        mainContainerViewController.addChild(controller)
+        mainContainerViewController.view.addSubview(controller.view)
+        controller.view.frame = mainContainerViewController.view.bounds
+        controller.didMove(toParent: mainContainerViewController)
     }
 
     fileprivate func updateCurrentTab() {
