@@ -719,8 +719,14 @@ class MainViewController: UIViewController {
         notificationView?.layoutSubviews()
         let height = notificationView?.frame.size.height ?? 0
         notificationContainerHeight.constant = height
+        updateContainerViewSafeAreaInsets()
     }
 
+    private func updateContainerViewSafeAreaInsets() {
+        mainContainerViewController?.additionalSafeAreaInsets.top = (notificationContainer.frame.maxY - view.safeAreaInsets.top)
+        mainContainerViewController?.additionalSafeAreaInsets.bottom = (view.bounds.maxY - toolbar.frame.minY) - view.safeAreaInsets.bottom
+    }
+    
     func showNotification(title: String, message: String, dismissHandler: @escaping NotificationView.DismissHandler) {
 
         let notificationView = NotificationView.loadFromNib(dismissHandler: dismissHandler)
