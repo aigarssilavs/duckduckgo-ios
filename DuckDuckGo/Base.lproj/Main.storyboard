@@ -161,13 +161,13 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 of 12" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSE-zZ-iud">
-                                                        <rect key="frame" x="231" y="11" width="37" height="14"/>
+                                                        <rect key="frame" x="224.5" y="10" width="43.5" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
                                                         <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="IBB-TQ-d5c">
-                                                        <rect key="frame" x="38" y="0.0" width="185" height="36"/>
+                                                        <rect key="frame" x="38" y="0.0" width="178.5" height="36"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="16"/>
@@ -267,14 +267,16 @@
                             <constraint firstItem="EJw-WC-cX3" firstAttribute="centerX" secondItem="Vxt-xD-aBt" secondAttribute="centerX" id="5ha-ed-qjz"/>
                             <constraint firstItem="nQT-PV-ULm" firstAttribute="top" secondItem="uBn-Md-Q2c" secondAttribute="top" id="BrS-Dd-c0g"/>
                             <constraint firstItem="iiL-6e-jxs" firstAttribute="width" secondItem="Vxt-xD-aBt" secondAttribute="width" id="CfL-Ud-UIC"/>
-                            <constraint firstItem="0vw-jR-X6Q" firstAttribute="centerY" secondItem="Ylj-oJ-fqD" secondAttribute="centerY" id="E05-Ox-iF4"/>
                             <constraint firstItem="EJw-WC-cX3" firstAttribute="height" secondItem="Vxt-xD-aBt" secondAttribute="height" id="E8u-Qv-Iac"/>
                             <constraint firstItem="agl-Nk-nUH" firstAttribute="top" secondItem="uBn-Md-Q2c" secondAttribute="top" id="Esd-8U-LGj"/>
                             <constraint firstAttribute="bottom" secondItem="yPc-P1-sCk" secondAttribute="bottom" id="FWX-GD-c7o"/>
+                            <constraint firstItem="Krm-hA-s9u" firstAttribute="top" secondItem="0vw-jR-X6Q" secondAttribute="bottom" id="FxO-ex-9dj"/>
                             <constraint firstItem="iiL-6e-jxs" firstAttribute="centerX" secondItem="uBn-Md-Q2c" secondAttribute="centerX" id="GYY-82-9YX"/>
+                            <constraint firstItem="0vw-jR-X6Q" firstAttribute="leading" secondItem="Vxt-xD-aBt" secondAttribute="leading" id="H33-oZ-6vR"/>
                             <constraint firstItem="kFG-OX-YkL" firstAttribute="width" secondItem="nQT-PV-ULm" secondAttribute="width" id="HdJ-g2-Ov8"/>
                             <constraint firstItem="kFG-OX-YkL" firstAttribute="bottom" secondItem="nQT-PV-ULm" secondAttribute="bottom" id="LiF-mb-9zs"/>
-                            <constraint firstItem="0vw-jR-X6Q" firstAttribute="centerX" secondItem="Ylj-oJ-fqD" secondAttribute="centerX" id="M0o-nm-oqt"/>
+                            <constraint firstItem="0vw-jR-X6Q" firstAttribute="top" secondItem="lJT-0B-l2J" secondAttribute="bottom" id="LwM-TL-gho"/>
+                            <constraint firstItem="0vw-jR-X6Q" firstAttribute="trailing" secondItem="Vxt-xD-aBt" secondAttribute="trailing" id="MeV-nA-tfJ"/>
                             <constraint firstItem="Krm-hA-s9u" firstAttribute="top" secondItem="Ylj-oJ-fqD" secondAttribute="bottom" id="N6y-rD-Nne"/>
                             <constraint firstItem="lJT-0B-l2J" firstAttribute="width" secondItem="Vxt-xD-aBt" secondAttribute="width" id="NuH-hE-pWg"/>
                             <constraint firstItem="lJT-0B-l2J" firstAttribute="top" secondItem="nQT-PV-ULm" secondAttribute="bottom" id="P7O-RF-g4h"/>
@@ -283,9 +285,7 @@
                             <constraint firstItem="uBn-Md-Q2c" firstAttribute="trailing" secondItem="agl-Nk-nUH" secondAttribute="trailing" id="T2S-tz-4gK"/>
                             <constraint firstItem="Krm-hA-s9u" firstAttribute="bottom" secondItem="uBn-Md-Q2c" secondAttribute="bottom" id="UsQ-i7-pjr"/>
                             <constraint firstItem="kFG-OX-YkL" firstAttribute="leading" secondItem="nQT-PV-ULm" secondAttribute="leading" id="W6d-u9-zZQ"/>
-                            <constraint firstItem="0vw-jR-X6Q" firstAttribute="width" secondItem="Ylj-oJ-fqD" secondAttribute="width" id="a3J-xn-lh0"/>
                             <constraint firstItem="lJT-0B-l2J" firstAttribute="centerX" secondItem="uBn-Md-Q2c" secondAttribute="centerX" id="d7x-EX-84Q"/>
-                            <constraint firstItem="0vw-jR-X6Q" firstAttribute="height" secondItem="Ylj-oJ-fqD" secondAttribute="height" id="dIa-8h-sOB"/>
                             <constraint firstItem="EJw-WC-cX3" firstAttribute="centerY" secondItem="Vxt-xD-aBt" secondAttribute="centerY" id="eOr-re-Jxe"/>
                             <constraint firstItem="EJw-WC-cX3" firstAttribute="width" secondItem="Vxt-xD-aBt" secondAttribute="width" id="gmj-jq-FHp"/>
                             <constraint firstItem="Ylj-oJ-fqD" firstAttribute="top" secondItem="lJT-0B-l2J" secondAttribute="bottom" id="h5k-Sy-jb2"/>
