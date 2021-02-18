@@ -50,6 +50,7 @@ class WebContainerViewController: UIViewController {
 
         let webView = WKWebView(frame: view.frame)
         webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        webView.scrollView.contentInsetAdjustmentBehavior = .always
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
         view.addSubview(webView)
         self.webView = webView
