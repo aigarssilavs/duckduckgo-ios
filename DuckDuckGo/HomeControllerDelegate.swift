@@ -24,8 +24,6 @@ protocol HomeControllerDelegate: class {
     func home(_ home: HomeViewController, didRequestUrl url: URL)
 
     func home(_ home: HomeViewController, didRequestQuery query: String)
-    
-    func home(_ home: HomeViewController, didRequestContentOverflow shouldOverflow: Bool) -> CGFloat
 
     func homeDidDeactivateOmniBar(home: HomeViewController)
 

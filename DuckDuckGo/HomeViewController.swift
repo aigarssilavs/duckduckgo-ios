@@ -79,15 +79,6 @@ class HomeViewController: UIViewController {
         collectionView.configure(withController: self, andTheme: ThemeManager.shared.currentTheme)
     }
     
-    func enableContentUnderflow() -> CGFloat {
-        return delegate?.home(self, didRequestContentOverflow: true) ?? 0
-    }
-    
-    @discardableResult
-    func disableContentUnderflow() -> CGFloat {
-        return delegate?.home(self, didRequestContentOverflow: false) ?? 0
-    }
-    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate(alongsideTransition: { _ in

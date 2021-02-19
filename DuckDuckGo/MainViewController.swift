@@ -68,16 +68,6 @@ class MainViewController: UIViewController {
 
     var omniBar: OmniBar!
     var chromeManager: BrowserChromeManager!
-
-    var allowContentUnderflow = false {
-        didSet {
-            containerViewTop.constant = allowContentUnderflow ? contentUnderflow : 0
-        }
-    }
-    
-    var contentUnderflow: CGFloat {
-        return 3 + (allowContentUnderflow ? -customNavigationBar.frame.size.height : 0)
-    }
     
     var homeController: HomeViewController?
     var tabsBarController: TabsBarViewController?
@@ -489,7 +479,6 @@ class MainViewController: UIViewController {
     }
 
     func loadUrlInNewTab(_ url: URL, reuseExisting: Bool = false) {
-        allowContentUnderflow = false
         customNavigationBar.alpha = 1
         loadViewIfNeeded()
         if reuseExisting, let existing = tabManager.first(withUrl: url) {
@@ -521,7 +510,6 @@ class MainViewController: UIViewController {
 
     func loadUrl(_ url: URL) {
         customNavigationBar.alpha = 1
-        allowContentUnderflow = false
         currentTab?.load(url: url)
         guard let tab = currentTab else { fatalError("no tab") }
         select(tab: tab)
@@ -536,7 +524,6 @@ class MainViewController: UIViewController {
 
     func select(tabAt index: Int) {
         customNavigationBar.alpha = 1
-        allowContentUnderflow = false
         let tab = tabManager.select(tabAt: index)
         select(tab: tab)
     }
@@ -1087,11 +1074,6 @@ extension MainViewController: HomeControllerDelegate {
     func home(_ home: HomeViewController, didRequestUrl url: URL) {
         showKeyboardAfterFireButton?.cancel()
         loadUrl(url)
-    }
-    
-    func home(_ home: HomeViewController, didRequestContentOverflow shouldOverflow: Bool) -> CGFloat {
-        allowContentUnderflow = shouldOverflow
-        return contentUnderflow
     }
 
     func homeDidDeactivateOmniBar(home: HomeViewController) {
