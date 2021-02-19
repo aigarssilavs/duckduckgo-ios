@@ -155,9 +155,9 @@ private class BarsAnimator {
     private(set) var barsState: State = .revealed
     private var transitionProgress: CGFloat = 0.0
     
-    var draggingStartPosY: CGFloat = 0
+    private var draggingStartPosY: CGFloat = 0
     
-    var transitionStartPosY: CGFloat = 0
+    private var transitionStartPosY: CGFloat = 0
 
     private var bottomRevealGestureState: BottomBounceRevealing = .possible
     private var combinedBarsHeight: CGFloat {
@@ -171,7 +171,7 @@ private class BarsAnimator {
         case hidden
     }
     
-    enum BottomBounceRevealing: String {
+    private enum BottomBounceRevealing: String {
         case possible
         case triggered
         case cancelled
@@ -181,7 +181,7 @@ private class BarsAnimator {
         draggingStartPosY = scrollView.contentOffset.y
     }
     
-    func calculateTransitionRatio(for contentOffset: CGFloat) -> CGFloat {
+    private func calculateTransitionRatio(for contentOffset: CGFloat) -> CGFloat {
         let distance = contentOffset - transitionStartPosY
         let barsHeight = delegate?.barsMaxHeight ?? CGFloat.infinity
         
