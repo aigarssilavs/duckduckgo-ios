@@ -213,7 +213,7 @@ private class BarsAnimator {
         
         // In case view has been "caught" in the middle of the animation above the (0.0, 0.0) offset,
         // wait till user scrolls to the top before animating any transition.
-        if draggingStartPosY < 0, scrollView.contentOffset.y <= 0 {
+        if draggingStartPosY < -(delegate?.barsMaxHeight ?? 0), scrollView.contentOffset.y <= -(delegate?.barsMaxHeight ?? 0) {
             return
         }
         
@@ -224,9 +224,7 @@ private class BarsAnimator {
         delegate?.setBarsVisibility(1.0 - ratio, animated: false)
         transitionProgress = ratio
         
-        var offset = scrollView.contentOffset
-        offset.y = transitionStartPosY
-        scrollView.contentOffset = offset
+        transitionStartPosY = scrollView.contentOffset.y
     }
     
     private func transitioningAndScrolling(in scrollView: UIScrollView) {
@@ -243,9 +241,7 @@ private class BarsAnimator {
         delegate?.setBarsVisibility(1.0 - ratio, animated: false)
         transitionProgress = ratio
         
-        var offset = scrollView.contentOffset
-        offset.y = transitionStartPosY
-        scrollView.contentOffset = offset
+        transitionStartPosY = scrollView.contentOffset.y
     }
     
     private func hiddenAndScrolling(in scrollView: UIScrollView) {
