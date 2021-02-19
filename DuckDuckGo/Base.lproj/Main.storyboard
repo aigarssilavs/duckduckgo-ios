@@ -308,8 +308,6 @@
                     <connections>
                         <outlet property="backButton" destination="Kc6-IR-lKx" id="eo5-dT-718"/>
                         <outlet property="bookmarksButton" destination="M7u-mw-fly" id="Uq1-c0-osl"/>
-                        <outlet property="containerView" destination="Ylj-oJ-fqD" id="euu-c7-IYR"/>
-                        <outlet property="containerViewTop" destination="h5k-Sy-jb2" id="def-Jc-VHg"/>
                         <outlet property="customNavigationBar" destination="nQT-PV-ULm" id="OGt-AV-tQb"/>
                         <outlet property="findInPageBottomLayoutConstraint" destination="FWX-GD-c7o" id="sOR-Dj-VkC"/>
                         <outlet property="findInPageHeightLayoutConstraint" destination="wa0-5u-6yz" id="9K6-Hp-kcN"/>

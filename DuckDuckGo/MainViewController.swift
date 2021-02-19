@@ -36,7 +36,6 @@ class MainViewController: UIViewController {
 
     @IBOutlet weak var suggestionTrayContainer: UIView!
     @IBOutlet weak var customNavigationBar: UIView!
-    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var fireButton: UIBarButtonItem!
     @IBOutlet weak var bookmarksButton: UIBarButtonItem!
     @IBOutlet weak var backButton: UIBarButtonItem!
@@ -45,7 +44,6 @@ class MainViewController: UIViewController {
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var navBarTop: NSLayoutConstraint!
     @IBOutlet weak var toolbarBottom: NSLayoutConstraint!
-    @IBOutlet weak var containerViewTop: NSLayoutConstraint!
     
     @IBOutlet weak var tabsBar: UIView!
     @IBOutlet weak var tabsBarTop: NSLayoutConstraint!
