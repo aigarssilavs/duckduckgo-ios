@@ -273,6 +273,24 @@ class TabViewController: UIViewController {
         shouldReloadOnError = true
     }
 
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        self.updateWebViewObscuredInsets()
+    }
+    
+    private func updateWebViewObscuredInsets() {
+        // WKWebViewIOS doesn't calculate it's visible area correctly with non-default safe area insets
+        // - most apparent it web pages with fixed position elements, like Navbars -
+        // so we set "_obscuredInsets" directly. More info here:
+        // https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/ios/WKWebViewIOS.mm#L1905
+        let obscuredInsets = self.view.safeAreaInsets
+        webView.setValue(obscuredInsets, forKey: "_obscuredInsets")
+        
+        // We also have to set "_haveSetObscuredInsets" otherwise "_obscuredInsets" are ignored:
+        // https://github.com/WebKit/WebKit/blob/main/Source/WebKit/UIProcess/API/ios/WKWebViewIOS.mm#L582
+        webView.setValue(true, forKey: "_haveSetObscuredInsets")
+    }
+    
     func attachWebView(configuration: WKWebViewConfiguration, andLoadRequest request: URLRequest?, consumeCookies: Bool) {
         instrumentation.willPrepareWebView()
         webView = WKWebView(frame: view.bounds, configuration: configuration)
