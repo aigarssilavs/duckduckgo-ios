@@ -29,6 +29,7 @@ protocol BrowserChromeDelegate: class {
     var isToolbarHidden: Bool { get }
     var toolbarHeight: CGFloat { get }
     var barsMaxHeight: CGFloat { get }
+    var topBarsTotalMaxHeight: CGFloat { get }
 
     var omniBar: OmniBar! { get }
     var tabsBar: UIView! { get }
@@ -183,7 +184,7 @@ private class BarsAnimator {
     
     private func calculateTransitionRatio(for contentOffset: CGFloat) -> CGFloat {
         let distance = contentOffset - transitionStartPosY
-        let barsHeight = delegate?.barsMaxHeight ?? CGFloat.infinity
+        let barsHeight = delegate?.topBarsTotalMaxHeight ?? CGFloat.infinity
         
         let cumulativeDistance = (barsHeight * transitionProgress) + distance
         let normalizedDistance = max(cumulativeDistance, 0)
@@ -213,7 +214,8 @@ private class BarsAnimator {
         
         // In case view has been "caught" in the middle of the animation above the (0.0, 0.0) offset,
         // wait till user scrolls to the top before animating any transition.
-        if draggingStartPosY < -(delegate?.barsMaxHeight ?? 0), scrollView.contentOffset.y <= -(delegate?.barsMaxHeight ?? 0) {
+        let topPosY = -(delegate?.topBarsTotalMaxHeight ?? 0)
+        if draggingStartPosY < topPosY, scrollView.contentOffset.y <= topPosY {
             return
         }
         

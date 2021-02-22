@@ -873,6 +873,14 @@ extension MainViewController: BrowserChromeDelegate {
         return toolbar.frame.size.height
     }
     
+    var topBarsTotalMaxHeight: CGFloat {
+        var totalHeight = omniBar.bounds.size.height
+        if tabsBar.isHidden == false {
+            totalHeight += tabsBar.bounds.size.height
+        }
+        return totalHeight
+    }
+    
     var barsMaxHeight: CGFloat {
         return max(toolbarHeight, omniBar.frame.size.height)
     }
