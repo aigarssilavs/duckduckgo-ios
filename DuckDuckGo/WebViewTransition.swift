@@ -145,6 +145,7 @@ class ToWebViewTransition: WebViewTransition {
                 
         let theme = ThemeManager.shared.currentTheme
         let webViewFrame = visibleFrame(forWebView: webView)
+        mainViewController.view.alpha = 1
         
         solidBackground.backgroundColor = theme.backgroundColor
         solidBackground.frame = webView.bounds
