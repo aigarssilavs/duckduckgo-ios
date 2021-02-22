@@ -18,6 +18,7 @@
 //
 
 import Core
+import WebKit
 
 class WebViewTransition: TabSwitcherTransition {
     
@@ -26,6 +27,14 @@ class WebViewTransition: TabSwitcherTransition {
     fileprivate func tabSwitcherCellFrame(for attributes: UICollectionViewLayoutAttributes) -> CGRect {
         return self.tabSwitcherViewController.collectionView.convert(attributes.frame,
                                                                      to: self.tabSwitcherViewController.view)
+    }
+    
+    fileprivate func visibleFrame(forWebView webView: WKWebView) -> CGRect {
+        var visibleFrame = webView.convert(webView.bounds, to: nil)
+        let safeAreaFrame = webView.convert(webView.safeAreaLayoutGuide.layoutFrame, to: nil)
+        visibleFrame.origin.y = safeAreaFrame.origin.y
+        visibleFrame.size.height = safeAreaFrame.size.height
+        return visibleFrame
     }
     
     fileprivate func previewFrame(for cellBounds: CGSize, preview: UIImage) -> CGRect {
@@ -84,7 +93,7 @@ class FromWebViewTransition: WebViewTransition {
         }
         
         let theme = ThemeManager.shared.currentTheme
-        let webViewFrame = webView.convert(webView.bounds, to: nil)
+        let webViewFrame = visibleFrame(forWebView: webView)
         
         solidBackground.backgroundColor = theme.backgroundColor
         solidBackground.frame = webViewFrame
@@ -135,8 +144,7 @@ class ToWebViewTransition: WebViewTransition {
         }
                 
         let theme = ThemeManager.shared.currentTheme
-        let webViewFrame = webView.convert(webView.bounds, to: nil)
-        mainViewController.view.alpha = 1
+        let webViewFrame = visibleFrame(forWebView: webView)
         
         solidBackground.backgroundColor = theme.backgroundColor
         solidBackground.frame = webView.bounds

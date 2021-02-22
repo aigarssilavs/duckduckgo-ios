@@ -914,8 +914,18 @@ extension TabViewController: WKNavigationDelegate {
     func preparePreview(completion: @escaping (UIImage?) -> Void) {
         DispatchQueue.main.async { [weak self] in
             guard let webView = self?.webView else { completion(nil); return }
-            UIGraphicsBeginImageContextWithOptions(webView.bounds.size, false, UIScreen.main.scale)
-            webView.drawHierarchy(in: webView.bounds, afterScreenUpdates: true)
+            let visibleWebViewSize = CGSize(
+                width: webView.bounds.size.width,
+                height: webView.safeAreaLayoutGuide.layoutFrame.size.height
+            )
+            UIGraphicsBeginImageContextWithOptions(visibleWebViewSize, false, UIScreen.main.scale)
+            let drawFrame = CGRect(
+                x: webView.bounds.origin.x,
+                y: -webView.safeAreaInsets.top,
+                width: webView.bounds.size.width,
+                height: webView.bounds.size.height
+            )
+            webView.drawHierarchy(in: drawFrame, afterScreenUpdates: true)
             let image = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             completion(image)
