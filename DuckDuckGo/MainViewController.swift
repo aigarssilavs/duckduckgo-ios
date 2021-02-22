@@ -709,7 +709,9 @@ class MainViewController: UIViewController {
 
     private func updateContainerViewSafeAreaInsets() {
         mainContainerViewController?.additionalSafeAreaInsets.top = (notificationContainer.frame.maxY - view.safeAreaInsets.top)
-        mainContainerViewController?.additionalSafeAreaInsets.bottom = (view.bounds.maxY - toolbar.frame.minY) - view.safeAreaInsets.bottom
+        
+        let maxVisibleY = min(toolbar.frame.minY, findInPageView.isHidden ? .greatestFiniteMagnitude : findInPageView.frame.minY)
+        mainContainerViewController?.additionalSafeAreaInsets.bottom = view.bounds.maxY - maxVisibleY - view.safeAreaInsets.bottom
     }
     
     func showNotification(title: String, message: String, dismissHandler: @escaping NotificationView.DismissHandler) {
