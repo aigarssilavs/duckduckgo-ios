@@ -86,6 +86,10 @@
                                     <constraint firstAttribute="height" constant="52" id="XOq-1B-9oE"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vw3-JU-Vek">
+                                <rect key="frame" x="0.0" y="813" width="414" height="98"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kFG-OX-YkL" customClass="ProgressView" customModule="DuckDuckGo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="93" width="414" height="3"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -266,8 +270,10 @@
                         <viewLayoutGuide key="safeArea" id="uBn-Md-Q2c"/>
                         <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="vw3-JU-Vek" firstAttribute="top" secondItem="Krm-hA-s9u" secondAttribute="top" id="0J3-MV-G06"/>
                             <constraint firstItem="iiL-6e-jxs" firstAttribute="bottom" secondItem="nQT-PV-ULm" secondAttribute="bottom" id="1ip-bk-RO5"/>
                             <constraint firstItem="EJw-WC-cX3" firstAttribute="centerX" secondItem="Vxt-xD-aBt" secondAttribute="centerX" id="5ha-ed-qjz"/>
+                            <constraint firstItem="vw3-JU-Vek" firstAttribute="height" secondItem="Krm-hA-s9u" secondAttribute="height" multiplier="2" id="60Q-Qh-snt"/>
                             <constraint firstItem="nQT-PV-ULm" firstAttribute="top" secondItem="uBn-Md-Q2c" secondAttribute="top" id="BrS-Dd-c0g"/>
                             <constraint firstItem="iiL-6e-jxs" firstAttribute="width" secondItem="Vxt-xD-aBt" secondAttribute="width" id="CfL-Ud-UIC"/>
                             <constraint firstItem="EJw-WC-cX3" firstAttribute="height" secondItem="Vxt-xD-aBt" secondAttribute="height" id="E8u-Qv-Iac"/>
@@ -286,12 +292,14 @@
                             <constraint firstItem="Ylj-oJ-fqD" firstAttribute="leading" secondItem="Vxt-xD-aBt" secondAttribute="leading" id="Piz-bL-YZd"/>
                             <constraint firstItem="agl-Nk-nUH" firstAttribute="leading" secondItem="uBn-Md-Q2c" secondAttribute="leading" id="Rbf-jU-TU8"/>
                             <constraint firstItem="uBn-Md-Q2c" firstAttribute="trailing" secondItem="agl-Nk-nUH" secondAttribute="trailing" id="T2S-tz-4gK"/>
+                            <constraint firstItem="vw3-JU-Vek" firstAttribute="trailing" secondItem="Krm-hA-s9u" secondAttribute="trailing" id="TH8-Z9-QXY"/>
                             <constraint firstItem="Krm-hA-s9u" firstAttribute="bottom" secondItem="uBn-Md-Q2c" secondAttribute="bottom" id="UsQ-i7-pjr"/>
                             <constraint firstItem="kFG-OX-YkL" firstAttribute="leading" secondItem="nQT-PV-ULm" secondAttribute="leading" id="W6d-u9-zZQ"/>
                             <constraint firstItem="lJT-0B-l2J" firstAttribute="centerX" secondItem="uBn-Md-Q2c" secondAttribute="centerX" id="d7x-EX-84Q"/>
                             <constraint firstItem="EJw-WC-cX3" firstAttribute="centerY" secondItem="Vxt-xD-aBt" secondAttribute="centerY" id="eOr-re-Jxe"/>
                             <constraint firstItem="EJw-WC-cX3" firstAttribute="width" secondItem="Vxt-xD-aBt" secondAttribute="width" id="gmj-jq-FHp"/>
                             <constraint firstItem="Ylj-oJ-fqD" firstAttribute="top" secondItem="uBn-Md-Q2c" secondAttribute="top" id="h5k-Sy-jb2"/>
+                            <constraint firstItem="vw3-JU-Vek" firstAttribute="leading" secondItem="Krm-hA-s9u" secondAttribute="leading" id="kt5-SP-DT1"/>
                             <constraint firstItem="Krm-hA-s9u" firstAttribute="width" secondItem="Vxt-xD-aBt" secondAttribute="width" id="m5V-dn-y07"/>
                             <constraint firstItem="nQT-PV-ULm" firstAttribute="centerX" secondItem="Vxt-xD-aBt" secondAttribute="centerX" id="mvu-GD-IuW"/>
                             <constraint firstItem="yPc-P1-sCk" firstAttribute="centerX" secondItem="uBn-Md-Q2c" secondAttribute="centerX" id="pBv-7C-JRr"/>
@@ -329,6 +337,7 @@
                         <outlet property="tabsBarTop" destination="Esd-8U-LGj" id="eo3-WH-JlA"/>
                         <outlet property="tabsButton" destination="K7o-WL-SC5" id="K5w-s3-8x3"/>
                         <outlet property="toolbar" destination="Krm-hA-s9u" id="JHv-PZ-ILs"/>
+                        <outlet property="toolbarBackgroundView" destination="vw3-JU-Vek" id="YcB-5Z-HYa"/>
                         <outlet property="toolbarBottom" destination="UsQ-i7-pjr" id="nwd-gZ-QEh"/>
                         <segue destination="Lcg-P1-w26" kind="presentation" identifier="instructions" modalPresentationStyle="overCurrentContext" id="vjb-jn-qZe"/>
                         <segue destination="xj8-BF-A9c" kind="presentation" identifier="Settings" id="URp-Fv-PV5"/>

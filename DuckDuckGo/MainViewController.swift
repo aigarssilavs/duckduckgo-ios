@@ -41,6 +41,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var forwardButton: UIBarButtonItem!
     @IBOutlet weak var tabsButton: UIBarButtonItem!
+    @IBOutlet weak var toolbarBackgroundView: UIView!
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var navBarTop: NSLayoutConstraint!
     @IBOutlet weak var toolbarBottom: NSLayoutConstraint!
@@ -1424,6 +1425,7 @@ extension MainViewController: Themable {
         omniBar?.decorate(with: theme)
         progressView?.decorate(with: theme)
         
+        toolbarBackgroundView.backgroundColor = theme.backgroundColor
         toolbar?.barTintColor = theme.barBackgroundColor
         toolbar?.tintColor = theme.barTintColor
         
