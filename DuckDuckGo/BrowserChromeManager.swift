@@ -117,7 +117,7 @@ class BrowserChromeManager: NSObject, UIScrollViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         guard !scrollView.isZooming else { return }
         guard canHideBars(for: scrollView) else { return }
-        
+        dragging = false
         animator.didFinishScrolling(in: scrollView, velocity: velocity.y)
     }
 
