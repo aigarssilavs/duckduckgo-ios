@@ -35,6 +35,11 @@ protocol BrowserChromeDelegate: class {
     var tabsBar: UIView! { get }
 }
 
+private enum ScrollingDirection {
+    case up
+    case down
+}
+
 class BrowserChromeManager: NSObject, UIScrollViewDelegate {
 
     struct Constants {
@@ -55,6 +60,7 @@ class BrowserChromeManager: NSObject, UIScrollViewDelegate {
     private var observation: NSKeyValueObservation?
 
     private var dragging = false
+    private var deceleratingDirection: ScrollingDirection? // no direction set when not decelerating
     private var startZoomScale: CGFloat = 0
     
     func attach(to scrollView: UIScrollView) {
@@ -81,7 +87,12 @@ class BrowserChromeManager: NSObject, UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard !scrollView.isZooming else { return }
         
-        guard dragging else { return }
+        guard dragging else {
+            if let direction = deceleratingDirection {
+                animator.isDecelerating(scrollView: scrollView, inDirection: direction)
+            }
+            return
+        }
         guard canHideBars(for: scrollView) else {
             if animator.barsState != .revealed {
                 animator.revealBars(animated: true)
@@ -118,13 +129,23 @@ class BrowserChromeManager: NSObject, UIScrollViewDelegate {
         guard !scrollView.isZooming else { return }
         guard canHideBars(for: scrollView) else { return }
         dragging = false
-        animator.didFinishScrolling(in: scrollView, velocity: velocity.y)
+        
+        if velocity.y == 0 {
+            animator.didFinishScrolling(in: scrollView)
+        } else {
+            deceleratingDirection = velocity.y > 0 ? .down : .up
+        }
+        
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         dragging = false
     }
 
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        deceleratingDirection = nil
+    }
+    
     func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
         switch animator.barsState {
         case .hidden:
@@ -192,6 +213,17 @@ private class BarsAnimator {
         return min(normalizedDistance / barsHeight, 1.0)
     }
     
+    func isDecelerating(scrollView: UIScrollView, inDirection direction: ScrollingDirection) {
+        
+        switch barsState {
+        case .transitioning:
+            transitioningAndScrolling(in: scrollView)
+            
+        case .hidden, .revealed:
+            startedDecelerating(scrollView: scrollView, direction: direction)
+        }
+    }
+    
     func didScroll(in scrollView: UIScrollView) {
         
         switch barsState {
@@ -205,6 +237,16 @@ private class BarsAnimator {
             hiddenAndScrolling(in: scrollView)
             
         }
+    }
+    
+    private func startedDecelerating(scrollView: UIScrollView, direction: ScrollingDirection) {
+        guard (barsState == .revealed && direction == .down) || (barsState == .hidden && direction == .up) else { return }
+        transitionStartPosY = scrollView.contentOffset.y
+        barsState = .transitioning
+        
+        let ratio = calculateTransitionRatio(for: scrollView.contentOffset.y)
+        delegate?.setBarsVisibility(1.0 - ratio, animated: false)
+        transitionProgress = ratio
     }
     
     private func revealedAndScrolling(in scrollView: UIScrollView) {
@@ -269,7 +311,7 @@ private class BarsAnimator {
         transitionProgress = ratio
     }
     
-    func didFinishScrolling(in scrollView: UIScrollView, velocity: CGFloat) {
+    func didFinishScrolling(in scrollView: UIScrollView) {
         defer {
             bottomRevealGestureState = .possible
         }
@@ -278,18 +320,8 @@ private class BarsAnimator {
             return
         }
         
-        guard velocity >= 0 else {
-            revealBars(animated: true)
-            return
-        }
-        
         let isAboveExtendedBottomBounceArea = scrollView.contentOffset.y < scrollView.contentOffsetYAtBottom - combinedBarsHeight
         guard barsState == .transitioning || isAboveExtendedBottomBounceArea else { return }
-        
-        guard velocity == 0 else {
-            hideBars(animated: true)
-            return
-        }
         
         switch barsState {
         case .revealed, .hidden:
