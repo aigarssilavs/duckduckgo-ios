@@ -43,10 +43,7 @@ private enum ScrollingDirection {
 class BrowserChromeManager: NSObject, UIScrollViewDelegate {
 
     struct Constants {
-        static let dragThreshold: CGFloat = 30
         static let zoomThreshold: CGFloat = 0.1
-        
-        static let contentSizeKVOKey = "contentSize"
     }
 
     weak var delegate: BrowserChromeDelegate? {
