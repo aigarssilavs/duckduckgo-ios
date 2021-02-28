@@ -342,7 +342,7 @@ private class BarsAnimator {
         barsState = .revealed
         transitionProgress = 0
         
-        delegate?.setBarsVisibility(1, animated: animated && !alreadyRevealed)
+        setBarsVisibility(1, animated: animated && !alreadyRevealed)
     }
     
     func hideBars(animated: Bool) {
@@ -351,7 +351,20 @@ private class BarsAnimator {
         barsState = .hidden
         transitionProgress = 1.0
         
-        delegate?.setBarsVisibility(0, animated: animated)
+        setBarsVisibility(0, animated: animated)
+    }
+    
+    private func setBarsVisibility(_ percent: CGFloat, animated: Bool) {
+        guard animated else {
+            delegate?.setBarsVisibility(percent, animated: animated)
+            return
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            // Wait for 0.1s to allow all of the scrolling / zooming related content updates of the webView to resolve before triggering any animations
+            // Otherwise the transition of the safe area (_obscuredInsets) of the webView will not be animated (Bars themselved would be animated somoothly anyway)
+            // Delay can be removed if better solution is found or cleaner code is preferable to smoother UX
+            self?.delegate?.setBarsVisibility(percent, animated: animated)
+        }
     }
     
     func refresh() {
