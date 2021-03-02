@@ -28,7 +28,6 @@ protocol BrowserChromeDelegate: class {
 
     var isToolbarHidden: Bool { get }
     var toolbarHeight: CGFloat { get }
-    var barsMaxHeight: CGFloat { get }
     var topBarsTotalMaxHeight: CGFloat { get }
 
     var omniBar: OmniBar! { get }
@@ -155,7 +154,7 @@ class BrowserChromeManager: NSObject, UIScrollViewDelegate {
     
     /// Bars should not be hidden in case ScrollView content is smaller than full (with bars hidden) viewport.
     private func canHideBars(for scrollView: UIScrollView) -> Bool {
-        return scrollView.bounds.height + (delegate?.barsMaxHeight ?? 0) < scrollView.contentSize.height
+        return scrollView.bounds.height < scrollView.contentSize.height
     }
 
     func reset() {

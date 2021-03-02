@@ -883,10 +883,6 @@ extension MainViewController: BrowserChromeDelegate {
         }
         return totalHeight
     }
-    
-    var barsMaxHeight: CGFloat {
-        return max(toolbarHeight, omniBar.frame.size.height)
-    }
 
     // 1.0 - full size, 0.0 - hidden
     private func updateToolbarConstant(_ ratio: CGFloat) {
