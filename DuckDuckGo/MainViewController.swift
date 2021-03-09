@@ -738,12 +738,13 @@ class MainViewController: UIViewController {
     func hideNotification() {
 
         notificationContainerTop.constant = -(notificationView?.frame.size.height ?? 0)
-        notificationContainerHeight.constant = 0
         UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
         }, completion: { _ in
-            self.notificationContainerTop.constant = 0
             self.notificationView?.removeFromSuperview()
+            self.notificationView = nil // Prevent notificationView from messing up layout in viewDidLayoutSubviews() before it's deallocated
+            self.notificationContainerTop.constant = 0
+            self.notificationContainerHeight.constant = 0
         })
 
     }
@@ -884,6 +885,10 @@ extension MainViewController: BrowserChromeDelegate {
         return totalHeight
     }
 
+    var notificationBannerHeight: CGFloat {
+        return notificationContainer.bounds.size.height
+    }
+    
     // 1.0 - full size, 0.0 - hidden
     private func updateToolbarConstant(_ ratio: CGFloat) {
         var bottomHeight = toolbarHeight
